@@ -106,7 +106,10 @@ value, charging value, offline value) are unknown.
   stages and changes the LED — changes nothing in the 256-byte page. The config lives in the
   mouse and never crosses the radio. The `2c 04 2c 04 2c 04` triplet at `0x30` and the table at
   `0x80..0x8F` stayed constant through every capture, including a session dedicated to pressing
-  the DPI button.
+  the DPI button. A live capture while pressing the button repeatedly showed that it emits **no
+  HID event at all** — no button event (buttons 6–8 exist in the descriptor but are not wired to
+  it), no vendor frame, no announce change; only left and right clicks produce button events.
+  The only thing the host ever notices is the scaled motion deltas.
 * The page does mirror the **last command it received**: after our query, `B5 05 00 00` sits at
   `0x08` (echoed again at `0x36`).
 * Radio housekeeping ticks regardless of the mouse state: an uptime-like counter at `0x18`, and
