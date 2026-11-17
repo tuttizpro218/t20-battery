@@ -1,0 +1,5 @@
+# HXSJ T20 battery readout: let the active desktop user open the receiver's hidraw node.
+# Installed as /etc/udev/rules.d/70-t20-hidraw.rules (before systemd's 73-seat-late.rules
+# so the uaccess tag is applied in time).
+# Reload with: sudo udevadm control --reload-rules && sudo udevadm trigger
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1ea7", ATTRS{idProduct}=="0066", TAG+="uaccess", MODE="0660"
