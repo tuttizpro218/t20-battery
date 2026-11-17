@@ -1,3 +1,4 @@
 t20-battery
 build/
 *.o
+local/
