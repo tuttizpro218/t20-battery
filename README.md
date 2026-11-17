@@ -87,9 +87,16 @@ sudo python3 tools/b5read.py single
 
 ## Credits
 
-Protocol reverse-engineered 2026-11-17 from live hidraw captures on Debian 13 (kernel 6.12),
-with the owner of the mouse running the probes and confirming the battery state. The
-[Wireless-Device-Battery-Monitor](https://github.com/krisgfx9/Wireless-Device-Battery-Monitor)
+* **Protocol reverse-engineering, driver and tooling:** the GLM AI assistant (Z.ai), working
+  through the [OpenCode](https://opencode.ai) coding agent. The whole protocol was found from
+  live hidraw captures in a single session — no vendor software, no prior art, no published
+  documentation existed for this receiver.
+* **Hardware testing and verification:** the mouse's owner,
+  [@tuttizpro218](https://github.com/tuttizpro218) — identified the dongle in `lsusb`, ran
+  every probe (power cycles, charger plug/unplug on cue) and confirmed the reported level
+  matched the real battery state.
+
+The [Wireless-Device-Battery-Monitor](https://github.com/krisgfx9/Wireless-Device-Battery-Monitor)
 project inspired the hunt and supports many other brands — this dongle id just wasn't on its
 list. If you have a different mouse on a `1EA7:0066` dongle, it may work as-is; open an issue
 with your `--raw` output.

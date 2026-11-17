@@ -109,3 +109,10 @@ parsing is needed). It reports `state` and the percent from chunk `0x94`.
 
 `tools/b5read.py` is the probe utility used during reverse engineering: it dumps the full page,
 diffs it between reads (`loop` mode) and decodes the status area (`single` mode).
+
+## Credits
+
+Protocol reverse-engineered on 2026-11-17 by the **GLM AI assistant** (Z.ai, via the
+[OpenCode](https://opencode.ai) coding agent), working live with the mouse's owner,
+**@tuttizpro218**, who ran the probes (power cycles, charger plug/unplug) and validated the
+readings against the real battery state.
