@@ -100,6 +100,20 @@ turns out to be quantised or non-linear on this firmware, this page will be upda
 byte stayed `02` in every capture, including while charging; its full semantics (low-battery
 value, charging value, offline value) are unknown.
 
+## What is not in the page
+
+* **DPI and other mouse settings.** Pressing the mouse's DPI button — which visibly cycles
+  stages and changes the LED — changes nothing in the 256-byte page. The config lives in the
+  mouse and never crosses the radio. The `2c 04 2c 04 2c 04` triplet at `0x30` and the table at
+  `0x80..0x8F` stayed constant through every capture, including a session dedicated to pressing
+  the DPI button.
+* The page does mirror the **last command it received**: after our query, `B5 05 00 00` sits at
+  `0x08` (echoed again at `0x36`).
+* Radio housekeeping ticks regardless of the mouse state: an uptime-like counter at `0x18`, and
+  byte `0xC8` (`ff 00 xx 00`) plus `0x50`/`0xD8..0xE4` flip constantly while the mouse is active
+  and settle back to `ff` when it idles — most likely last-packet RSSI/noise metrics, not
+  settings.
+
 ## Implementation
 
 `src/t20-battery.cpp` enumerates `/sys/class/hidraw`, matches `HID_ID=0003:00001EA7:00000066`,
