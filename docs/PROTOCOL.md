@@ -114,6 +114,14 @@ value, charging value, offline value) are unknown.
   and settle back to `ff` when it idles — most likely last-packet RSSI/noise metrics, not
   settings.
 
+## Wired mode is not a data channel
+
+Plugging the mouse into a PC over its USB-C port produces **no USB device at all**, and the
+mouse keeps working through the 2.4 GHz dongle while the cable is connected. With a
+charge-only cable (the only one available during testing) the port cannot be distinguished
+from a power-only port, but either way there is no wired interface to the mouse's config —
+the DPI button remains the only way to change it.
+
 ## Implementation
 
 `src/t20-battery.cpp` enumerates `/sys/class/hidraw`, matches `HID_ID=0003:00001EA7:00000066`,
