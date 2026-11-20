@@ -91,7 +91,10 @@ def main():
         mem = dump(fd)
         if mem:
             log(status_line(mem))
-            log("region 0x80-0x9F: %s" % read_region(mem, 0x80, 32).hex(" "))
+            log("=== full page ===")
+            for row in range(0, 0x100, 32):
+                log("0x%02x: %s" % (row, read_region(mem, row, 32).hex(" ")))
+            log("=== end page ===")
     elif mode == "loop":
         # built-in choreography: the script tells you when to plug/unplug
         total = secs if secs >= 75 else 75
